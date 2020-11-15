@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FaMagento } from 'react-icons/fa';
+import { FaGift } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { Container } from '../../Styled-Global';
 
@@ -9,10 +9,11 @@ export const Nav = styled.nav`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1rem;
+    font-size: 1.3rem;
     position: sticky;
     top: 0;
     z-index: 999;
+    
 `
 
 export const NavbarContainer = styled(Container)`
@@ -27,12 +28,12 @@ export const NavLogo = styled(Link)`
     justify-self: flex-start;
     cursor: pointer;
     text-decoration: none;
-    font-size: 2rem;
+    font-size: 2.7rem;
     display: flex;
     align-items: center;
 `
 
-export const NavIcon = styled(FaMagento)`
+export const NavIcon = styled(FaGift)`
     margin-right: 0.5rem;
 `
 
