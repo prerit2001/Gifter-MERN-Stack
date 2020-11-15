@@ -19,7 +19,7 @@ export const homeObjOne = {
     imgStart: 
     '',
     img: 
-    'https://raw.githubusercontent.com/debugcluster1/kjhuh/master/%E2%80%94Pngtree%E2%80%94exquisite%20blue%20christmas%20bow%20gift_5532670.png',
+    'https://raw.githubusercontent.com/prerit2001/Gifter/master/Images/%E2%80%94Pngtree%E2%80%94exquisite%20blue%20christmas%20bow%20gift_5532670.png',
     alt: 
     'Gift',
     start: 
