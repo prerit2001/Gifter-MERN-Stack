@@ -1,12 +1,10 @@
 import React from 'react';
 import { Footer, InfoSection,Pricing } from '../../Components';
-import { homeObjOne,homeObjTwo,homeObjFour } from './Data';
+import { homeObjFour } from './../HomePage/Data';
 
-const Homepage = () => {
+const Services = () => {
     return (
         <>
-          <InfoSection {...homeObjOne}/>  
-          <InfoSection {...homeObjTwo}/> 
           <Pricing />
           <InfoSection {...homeObjFour}/> 
           <Footer />
@@ -14,4 +12,4 @@ const Homepage = () => {
     )
 }
 
-export default Homepage
+export default Services
