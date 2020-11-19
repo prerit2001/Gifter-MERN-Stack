@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const InfoSec = styled.div`
   color: #fff;
@@ -77,3 +78,71 @@ export const Subtitle = styled.p`
   line-height: 24px;
   color: ${({ lightTextDesc }) => (lightTextDesc ? '#a9b3c1' : '#1c2237')};
 `;
+
+export const Cross = styled.div`
+  right:0;
+  top:0;
+  position:fixed;
+`
+
+export const Input = styled.input`
+  padding: 15px;
+  font-size: 20px;
+  width:90%; 
+  margin: 15px; 
+  box-sizing: border-box;
+  letter-spacing: 1px;
+  color: white;
+  border: 0;
+  border-bottom: 10px solid #ccc;
+  background-color: #101522;
+  transition: 1s;
+`
+export const Heading1 = styled.h1`
+  margin-bottom: 24px;
+  font-size: 45px;
+  line-height: 1.1;
+  font-weight: 600;
+  color: #1c2237;
+  font-family: cursive;
+  text-align: center;
+`;
+
+export const ForgetPass = styled.div`
+  color: black;
+  font-size: 15px;
+  text-align: right;
+  margin-right: 7%;
+  cursor: pointer;
+  margin-bottom: 2%;
+`
+export const Button1 = styled.button`
+  margin-bottom: 24px;
+  font-size: 25px;
+  line-height: 1.1;
+  font-weight: 600;
+  color: #1c2237;
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  cursor: pointer;
+  margin:auto;
+  display:block;
+  background: black;
+  color: white;
+
+  &:hover{
+    background: green;
+    color: yellow;
+  }
+`
+
+export const Account = styled.div`
+  color: black;
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
+  background: lightblue;
+  margin-top: 10px;
+  font-size: 1.2rem;
+`  
