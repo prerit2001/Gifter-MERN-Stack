@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+
 
 export const InfoSec = styled.div`
   color: #fff;
@@ -82,6 +82,7 @@ export const Subtitle = styled.p`
 export const Cross = styled.div`
   right:0;
   top:0;
+  margin: 30px;
   position:fixed;
 `
 
@@ -138,13 +139,14 @@ export const Button1 = styled.button`
 `
 
 export const Account = styled.div`
-  9color: black;
+  color: black;
   font-size: 15px;
   text-align: center;
   cursor: pointer;
   background: lightblue;
   margin-top: 10px;
   font-size: 1.2rem;
+  
 `  
 
 export const FullName = styled.input`
@@ -159,6 +161,14 @@ export const FullName = styled.input`
   border-bottom: 10px solid #ccc;
   background-color: #101522;
   transition: 1s;
+  @media screen and (max-width: 850px) {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    padding: 7px;
+    margin: 3px;
+    padding: 10px;
+  }
 `
 
 export const Age = styled.input`
@@ -175,6 +185,13 @@ export const Age = styled.input`
   border-bottom: 10px solid #ccc;
   background-color: #101522;
   transition: 1s;
+  @media screen and (max-width: 850px) {
+    width: 90%;
+    display: flex;
+    padding: 7px;
+    margin: 3px;
+    justify-content: center;
+  }
 `
 
 
@@ -189,5 +206,13 @@ export const Input1 = styled.input`
   border: 0;
   border-bottom: 10px solid #ccc;
   background-color: #101522;
+  
   transition: 1s;
+  @media screen and (max-width: 850px) {
+    width: 90%;
+    display: flex;
+    padding: 7px;
+    margin: 3px;
+    justify-content: center;
+  }
 `

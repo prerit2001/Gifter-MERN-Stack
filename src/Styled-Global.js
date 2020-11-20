@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
 `
 
 export const Container = styled.div`
-    z-index: 1;
+   z-index: 1;
     width: 100%;
     max-width: 1300px;
     margin-right: auto;
@@ -30,6 +30,7 @@ export const Button = styled.button`
   white-space: nowrap;
   padding: ${({ big }) => (big ? '12px 64px' : '10px 20px')};
   color: #fff;
+  right: 0;
   font-size: ${({ fontBig }) => (fontBig ? '20px' : '16px')};
   outline: none;
   border: none;
@@ -40,7 +41,8 @@ export const Button = styled.button`
     background-color: ${({ primary }) => (primary ? '#0467FB' : '#4B59F7')};
   }
   @media screen and (max-width: 960px) {
-    width: 100%;
+    width: 50%;
+    font-size: 10px;
   }
 `;
 
