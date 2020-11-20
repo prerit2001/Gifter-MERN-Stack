@@ -20,7 +20,10 @@ import {
   Input,
   Heading1,
   Button1,
-  Account
+  Account,
+  FullName,
+  Age,
+  Input1
 } from './InfoSection.element';
 
 const customStyles = {
@@ -118,6 +121,7 @@ function InfoSection({
          { isPreviewShown && 
          <>
            <Heading1>Sign In</Heading1>
+           <form>
          <Input type="email" placeholder="📓 Username 　　　　　　　　　　　　　　　  　　👨" name="username"/>
          <Input type="password" placeholder="🔑 Password 　　　　　　　　　    　　　　 　　　👀" name="password"/>
          
@@ -125,14 +129,24 @@ function InfoSection({
          <Button1 type="submit" >Login</Button1>
          
          <Account onClick={handlePreview}>Don't Have Account ? Sign Up Here 😊</Account>
+         </form>
           </>
          }
 
          { !isPreviewShown && 
           <>
             <Heading1>Sign Up</Heading1>
-            
+            <form>
+            <FullName type="text" placeholder="👨 Full Name" required></FullName>
+            <FullName type="text" placeholder="🤔 Moto" required></FullName>
+            <br/>
+            <Age type="tel" id="phone" placeholder="📲 Phone Number" name="phone" pattern="[0-9]{10}" required></Age>
+            <Age type="number" placeholder="👨 Age" pattern="[0-9]{2}" required></Age><br/>
+            <Input1 type="email" placeholder="📓 Username" name="username"/>
+            <Input1 type="password" placeholder="🔑 Password" name="password"/><br/>
+            <Button1 type="submit" >Register</Button1>
             <Account onClick={handlePreview}>Already Have Account ? Login Here😊</Account>
+            </form>
           </>
          }
         

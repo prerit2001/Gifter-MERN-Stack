@@ -138,7 +138,7 @@ export const Button1 = styled.button`
 `
 
 export const Account = styled.div`
-  color: black;
+  9color: black;
   font-size: 15px;
   text-align: center;
   cursor: pointer;
@@ -146,3 +146,48 @@ export const Account = styled.div`
   margin-top: 10px;
   font-size: 1.2rem;
 `  
+
+export const FullName = styled.input`
+  padding: 15px;
+  font-size: 18px;
+  width:45%; 
+  margin: 15px; 
+  box-sizing: border-box;
+  letter-spacing: 1px;
+  color: white;
+  border: 0;
+  border-bottom: 10px solid #ccc;
+  background-color: #101522;
+  transition: 1s;
+`
+
+export const Age = styled.input`
+  padding: 15px;
+  font-size: 18px;
+  width:45%;
+  right: 0;
+  margin-right:7%; 
+  margin: 15px; 
+  box-sizing: border-box;
+  letter-spacing: 1px;
+  color: white;
+  border: 0;
+  border-bottom: 10px solid #ccc;
+  background-color: #101522;
+  transition: 1s;
+`
+
+
+export const Input1 = styled.input`
+  padding: 15px;
+  font-size: 20px;
+  width:45%; 
+  margin: 15px; 
+  box-sizing: border-box;
+  letter-spacing: 1px;
+  color: white;
+  border: 0;
+  border-bottom: 10px solid #ccc;
+  background-color: #101522;
+  transition: 1s;
+`
