@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 
 
 export const InfoSec = styled.div`
@@ -215,4 +216,14 @@ export const Input1 = styled.input`
     margin: 3px;
     justify-content: center;
   }
+`
+
+export const Prof = styled(Link)`
+  color: white;
+  text-align: center;
+  align-items: center;
+
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 1.5rem;
 `

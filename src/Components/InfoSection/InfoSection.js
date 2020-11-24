@@ -3,6 +3,8 @@ import React,{useState} from 'react';
 import { Container, Button } from '../../Styled-Global';
 import Modal from 'react-modal';
 import {FaWindowClose} from 'react-icons/fa';
+import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 
 import {
@@ -23,7 +25,8 @@ import {
   Account,
   FullName,
   Age,
-  Input1
+  Input1,
+  Prof
 } from './InfoSection.element';
 
 const customStyles = {
@@ -61,10 +64,13 @@ function InfoSection({
   const [ForgetPassword, setForgetPassword] = useState(0);
   const [otp, setotp] = useState(0);
   const [blank, setblank] = useState(0);
+  const [profile,setProfile] = useState(false);
+  const [name,setname] = useState('Folks');
 
 
   function openModal() {
     setIsOpen(true);
+    
   }
  
   function afterOpenModal() {
@@ -101,6 +107,75 @@ function OTP(e){
 
     setotp(otp===0 ? 1: 0); // Here we change state
 }
+
+  const [UName,UsetName] = useState('');
+  const [UMoto,UsetMoto] = useState('');
+  const [UPhone,UsetPhone] = useState('');
+  const [UAge,UsetAge] = useState('');
+  const [UEmail,UsetEmail] = useState('');
+  const [UPassword,UsetPassword] = useState('');
+
+function Register(e){
+  e.preventDefault();
+
+    console.log("Register");
+    const Name = UName;
+    const Email = UEmail;
+    const Password = UPassword;
+    const Age = UAge;
+    const Phone = UPhone;
+    const Moto = UMoto;
+
+    const signpupdata = {
+      Name : Name,
+      Moto : Moto,
+      Phone : Phone,
+      Age : Age,
+      Email: Email,
+      Password : Password
+    }
+
+    axios.post('http://localhost:3001/api/signup',signpupdata)
+    .then(function(responce){
+      console.log(responce);
+      setProfile(true);
+      setblank(1);
+      setname(Name);
+    })
+    .catch(function(error){
+      console.log(error);
+    });
+} 
+
+  const [IEmail,IsetEmail] = useState('');
+  const [IPassword,IsetPassword] = useState('');
+
+  function Login(e){
+    e.preventDefault();
+
+    console.log("Login");
+    const Email = IEmail;
+    const Password = IPassword;
+
+    const loginformdata = {
+      Email : Email,
+      Password: Password
+    }
+
+    axios.post('http://localhost:3001/api/signin',loginformdata)
+    .then(function(responce){
+      console.log(responce);
+      setProfile(true);
+      setblank(1);
+      setname(responce.data.user.Name);
+    })
+    .catch(function(error){
+      console.log(error);
+      alert('🙊 Login Failed : Invalid Credential 🙊');
+    });
+
+  }
+
   return (
     <>
       <InfoSec lightBg={lightBg}>
@@ -145,11 +220,11 @@ function OTP(e){
          <>
            <Heading1>Sign In</Heading1>
            <form>
-         <Input type="email" placeholder="📓 Username" name="username" required/><br/>
-         <Input type="password" placeholder="🔑 Password" name="password" required/>
+         <Input type="email" placeholder="📓 Email" onChange={event => IsetEmail(event.target.value)} required/><br/>
+         <Input type="password" placeholder="🔑 Password" onChange={event => IsetPassword(event.target.value)} required/>
          
          <ForgetPass onClick={handlePreview2}>Forget Your Password ?</ForgetPass>
-         <Button1 type="submit" >Login</Button1>
+         <Button1 type="submit" onClick={Login}>Login</Button1>
          
          <Account onClick={handlePreview}>Don't Have Account ? Sign Up Here 😊</Account>
          </form>
@@ -159,15 +234,15 @@ function OTP(e){
          { blank===0 && isPreviewShown===1 && 
           <>
             <Heading1>Sign Up</Heading1>
-            <form>
-            <FullName type="text" placeholder="👨 Full Name" required></FullName>
-            <FullName type="text" placeholder="🤔 Moto" required></FullName>
+            <form >
+            <FullName type="text" placeholder="👨 Full Name" onChange={event => UsetName(event.target.value)} required></FullName>
+            <FullName type="text" placeholder="🤔 Moto" onChange={event => UsetMoto(event.target.value)} required></FullName>
             <br/>
-            <Age type="tel" id="phone" placeholder="📲 Phone Number" name="phone" pattern="[0-9]{10}" required></Age>
-            <Age type="number" placeholder="👨 Age" pattern="[0-9]{2}" required></Age><br/>
-            <Input1 type="email" placeholder="📓 Username" name="username" required/>
-            <Input1 type="password" placeholder="🔑 Password" name="password" required/><br/>
-            <Button1 type="submit" >Register</Button1>
+            <Age type="tel" id="phone" placeholder="📲 Phone Number" name="phone" pattern="[0-9]{10}"  onChange={event => UsetPhone(event.target.value)} required></Age>
+            <Age type="number" placeholder="👨 Age" pattern="[0-9]{2}" onChange={event => UsetAge(event.target.value)} required></Age><br/>
+            <Input1 type="email" placeholder="📓 Email" name="email" onChange={event => UsetEmail(event.target.value)} required/>
+            <Input1 type="password" placeholder="🔑 Password" name="password" onChange={event => UsetPassword(event.target.value)} required/><br/>
+            <Button1 type="submit" onClick={Register}>Register</Button1>
             <Account onClick={handlePreview}>Already Have Account ? Login Here😊</Account>
             </form>
           </>
@@ -179,7 +254,7 @@ function OTP(e){
            <Heading1>Forgot</Heading1>
            <Heading1>Password?</Heading1>
            <form>
-            <Input type="email" placeholder="📓 Username" name="username" required/><br/>
+            <Input type="email" placeholder="📓 Email" name="email" required/><br/>
             <Input type="number" placeholder="👨 Age" pattern="[0-9]{2}" required/><br/>
             <Button1 type="submit" onClick={OTP}>Request OTP</Button1>
             <Account onClick={handlePreview2}>Go Back 😊</Account>
@@ -188,7 +263,7 @@ function OTP(e){
          }
 
          {
-           otp==1 && 
+           otp===1 && 
            
            <>
            <Heading1>OTP Sent !</Heading1>
@@ -198,6 +273,16 @@ function OTP(e){
               <Button1 type="submit" onClick={OTP}>Submit Request</Button1>
               <Account onClick={OTP}>Cancel 😊</Account>
             </form>
+           </>
+         }
+
+         {
+           blank===1 && profile && 
+           <>
+           <Heading1>😎</Heading1>
+           <Heading1>Welcome</Heading1>
+           <Heading1>{name}</Heading1>
+           <Button><Prof to="/sign-up">Go To Your Profile Section</Prof></Button>
            </>
          }
         

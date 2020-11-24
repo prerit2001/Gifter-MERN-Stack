@@ -42,7 +42,7 @@ export const homeObjOne = {
     headline: 
     '🤗 Our Purpose 🎁',
     description: 
-      'In our personal life, We all want something to have with us which we want as a gift or present. We have no choice other than hoping for that present. Also, we get confused about what to take as a gift with us when visiting other`s homes/parties, etc. This Platform Solves both issues. As a Hoper You can add your wishlist of the item you want as your present and as a visiter you can check for a visiting person profille wishlist earlier.',
+      'In our personal life, We all want something to have with us which we want as a gift or present. We have no choice other than hoping for that present. Also, we get confused about what to take as a gift with us when visiting other`s homes/parties, etc. This Platform Solves both issues. As a Hoper You can add your wishlist of the item you want as your present and as a visiter you can check for a visiting person profile wishlist earlier.',
     buttonLabel: 'Wish Dream 🎁',
     imgStart: 
     'start',
