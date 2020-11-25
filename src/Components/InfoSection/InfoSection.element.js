@@ -227,3 +227,40 @@ export const Prof = styled(Link)`
   margin-top: 10px;
   font-size: 1.5rem;
 `
+
+export const Button2 = styled.button`
+  border-radius: 20px;
+  margin-bottom: 24px;
+  font-size: 25px;
+  line-height: 1.1;
+  font-weight: 600;
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  cursor: pointer;
+  margin:auto;
+  display:block;
+  background: #0467FB;
+  color: black;
+
+  &:hover{
+    background: green;
+    color: yellow;
+  }
+`
+
+export const Button3 = styled.button`
+  margin-bottom: 24px;
+  font-size: 25px;
+  line-height: 1.1;
+  font-weight: 600;
+  color: #1c2237;
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  cursor: pointer;
+  margin:auto;
+  display:block;
+  background: black;
+  color: white;
+`

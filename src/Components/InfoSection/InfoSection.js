@@ -1,10 +1,9 @@
 
-import React,{useState} from 'react';
+import React,{useState , useEffect} from 'react';
 import { Container, Button } from '../../Styled-Global';
 import Modal from 'react-modal';
 import {FaWindowClose} from 'react-icons/fa';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
 
 
 import {
@@ -26,7 +25,9 @@ import {
   FullName,
   Age,
   Input1,
-  Prof
+  Prof,
+  Button2,
+  Button3
 } from './InfoSection.element';
 
 const customStyles = {
@@ -55,7 +56,8 @@ function InfoSection({
   img,
   alt,
   imgStart,
-  start
+  start,
+  Loading
 }) {
 
   var subtitle;
@@ -66,6 +68,9 @@ function InfoSection({
   const [blank, setblank] = useState(0);
   const [profile,setProfile] = useState(false);
   const [name,setname] = useState('Folks');
+  const [loading, setloading] = useState(false);
+
+
 
 
   function openModal() {
@@ -118,6 +123,7 @@ function OTP(e){
 function Register(e){
   e.preventDefault();
 
+    setloading(true);
     console.log("Register");
     const Name = UName;
     const Email = UEmail;
@@ -135,15 +141,17 @@ function Register(e){
       Password : Password
     }
 
-    axios.post('http://localhost:3001/api/signup',signpupdata)
+    axios.post('https://node-backend-gifter.herokuapp.com/api/signup',signpupdata)
     .then(function(responce){
       console.log(responce);
       setProfile(true);
       setblank(1);
       setname(Name);
+      setloading(false);
     })
     .catch(function(error){
       console.log(error);
+      setloading(false);
     });
 } 
 
@@ -153,6 +161,7 @@ function Register(e){
   function Login(e){
     e.preventDefault();
 
+    setloading(true);
     console.log("Login");
     const Email = IEmail;
     const Password = IPassword;
@@ -162,22 +171,23 @@ function Register(e){
       Password: Password
     }
 
-    axios.post('http://localhost:3001/api/signin',loginformdata)
+    axios.post('https://node-backend-gifter.herokuapp.com/api/signin',loginformdata)
     .then(function(responce){
       console.log(responce);
       setProfile(true);
       setblank(1);
       setname(responce.data.user.Name);
+      setloading(false);
     })
     .catch(function(error){
       console.log(error);
       alert('🙊 Login Failed : Invalid Credential 🙊');
+      setloading(false);
     });
 
   }
-
   return (
-    <>
+    <> 
       <InfoSec lightBg={lightBg}>
         <Container>
           <InfoRow imgStart={imgStart}>
@@ -219,13 +229,13 @@ function Register(e){
          { blank===0 && isPreviewShown===0 && 
          <>
            <Heading1>Sign In</Heading1>
-           <form>
-         <Input type="email" placeholder="📓 Email" onChange={event => IsetEmail(event.target.value)} required/><br/>
+           <form  onSubmit={Login}>
+         <Input type="email" placeholder="📓 Email" onChange={event => IsetEmail(event.target.value)}   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$" required/><br/>
          <Input type="password" placeholder="🔑 Password" onChange={event => IsetPassword(event.target.value)} required/>
          
          <ForgetPass onClick={handlePreview2}>Forget Your Password ?</ForgetPass>
-         <Button1 type="submit" onClick={Login}>Login</Button1>
-         
+         {!loading && <><Button1 type="submit">Login</Button1></>}
+         {loading  && <><Button3><Img src="https://media.giphy.com/media/3o7bu3XilJ5BOiSGic/giphy.gif" style={{height: '60px',textAlign: 'center'}}/></Button3></>}
          <Account onClick={handlePreview}>Don't Have Account ? Sign Up Here 😊</Account>
          </form>
           </>
@@ -234,15 +244,16 @@ function Register(e){
          { blank===0 && isPreviewShown===1 && 
           <>
             <Heading1>Sign Up</Heading1>
-            <form >
+            <form onSubmit={Register}>
             <FullName type="text" placeholder="👨 Full Name" onChange={event => UsetName(event.target.value)} required></FullName>
             <FullName type="text" placeholder="🤔 Moto" onChange={event => UsetMoto(event.target.value)} required></FullName>
             <br/>
-            <Age type="tel" id="phone" placeholder="📲 Phone Number" name="phone" pattern="[0-9]{10}"  onChange={event => UsetPhone(event.target.value)} required></Age>
-            <Age type="number" placeholder="👨 Age" pattern="[0-9]{2}" onChange={event => UsetAge(event.target.value)} required></Age><br/>
-            <Input1 type="email" placeholder="📓 Email" name="email" onChange={event => UsetEmail(event.target.value)} required/>
+            <Age type="tel" id="phone" placeholder="📲 Phone Number (10 Digit) " name="phone" pattern="[0-9]{10}"  onChange={event => UsetPhone(event.target.value)} required></Age>
+            <Age type="text" placeholder="👨 Age" pattern="[0-9]{2}" onChange={event => UsetAge(event.target.value)} required></Age><br/>
+            <Input1 type="email" placeholder="📓 Email" name="email" onChange={event => UsetEmail(event.target.value)}   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$" required/>
             <Input1 type="password" placeholder="🔑 Password" name="password" onChange={event => UsetPassword(event.target.value)} required/><br/>
-            <Button1 type="submit" onClick={Register}>Register</Button1>
+            {!loading && <><Button1 type="submit">Register</Button1></>}
+         {loading  && <><Button3><Img src="https://media.giphy.com/media/3o7bu3XilJ5BOiSGic/giphy.gif" style={{height: '60px',textAlign: 'center'}}/></Button3></>}
             <Account onClick={handlePreview}>Already Have Account ? Login Here😊</Account>
             </form>
           </>
@@ -282,7 +293,7 @@ function Register(e){
            <Heading1>😎</Heading1>
            <Heading1>Welcome</Heading1>
            <Heading1>{name}</Heading1>
-           <Button><Prof to="/sign-up">Go To Your Profile Section</Prof></Button>
+           <Button2><Prof to="/sign-up">Go To Your Profile Section</Prof></Button2>
            </>
          }
         
