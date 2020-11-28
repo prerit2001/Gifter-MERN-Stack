@@ -10,11 +10,11 @@ const GlobalStyle = createGlobalStyle`
 `
 
 export const Container = styled.div`
-   z-index: 1;
+   z-index: 1; 
     width: 100%;
-    max-width: 1300px;
+    max-width: 1300px; 
     margin-right: auto;
-    margin-left: auto;
+    margin-left: auto; 
     padding-right: 55px;
     padding-left: 55px;
 

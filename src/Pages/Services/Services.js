@@ -1,10 +1,11 @@
 import React from 'react';
-import { Footer, InfoSection,Pricing } from '../../Components';
+import { Footer, InfoSection,Navbar,Pricing } from '../../Components';
 import { homeObjFour } from './../HomePage/Data';
 
 const Services = () => {
     return (
         <>
+          <Navbar />
           <Pricing />
           <InfoSection {...homeObjFour}/> 
           <Footer />

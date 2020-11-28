@@ -6,6 +6,10 @@ import Below_Homepage from './Pages/Below_Homepage/Below_Homepage';
 import Homepage from './Pages/HomePage/Homepage';
 import Services from './Pages/Services/Services';
 import Signup from './Pages/Sign-Up/Sign-up'
+import {Profile} from './Pages/Profile/Profile'
+import { PostWish } from './Pages/CreateWish/PostWish';
+import  {Galery}  from './Pages/WishGalery/Galery';
+import Footer from './Components/Footer/Footer'
 
 
 function App() {
@@ -17,9 +21,8 @@ function App() {
      
      <GlobalStyle />
 
-     
 
-     <Navbar />
+    
      
      <Switch>
 
@@ -28,8 +31,11 @@ function App() {
        <Route path="/services" exact component={Services}/>
        <Route path="/products" exact component={Homepage}/>
        <Route path="/sign-up" exact component={Signup}/>
-
+       <Route path="/profile" exact component={Profile}/>
+       <Route path="/createWish" exact component ={Galery }/>  
      </Switch>
+
+     
      
     </Router>
     
