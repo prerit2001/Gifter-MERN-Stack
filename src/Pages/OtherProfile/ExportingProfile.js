@@ -1,10 +1,13 @@
-import React,{useEffect,useState} from 'react';
+import { useHistory } from 'react-router-dom';
+import React from 'react';
+import {useEffect,useState} from 'react';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'
 import {AiFillWechat} from 'react-icons/ai';
 import {RiUserFollowFill} from 'react-icons/ri';
 import {PostWish} from '../CreateWish/PostWish';
 import ProfileNavbar from '../../Components/ProfileNavbar/Navbar'
+import Axios from 'axios';
 
 import {
     Full,
@@ -23,43 +26,125 @@ import {
     MainScreen,
     Something,
     ChatRight
-} from './Profile.element';
+} from '../Profile/Profile.element';
 
-import './Profile.css';
+import '../Profile/Profile.css';
 
 
 import ImageGalery from '../../Pages/WishGalery/ImageGalery'
+import { Button } from '../../Styled-Global';
 
+export function ExportingProfile({match}) {
+ var str = match.url;
+ var id = str.replace('/profile/', '');
+ const [followers,setfollowers] = useState(0);
+ const [followings,setfollowings] = useState(0);
+ const [wishno,setwishno] = useState(0);
+ const [button,setButton] = useState(true);
+ const [Name,setName] = useState('');
+ const [Age,setAge] = useState('');
+ const [Bio,setBio] = useState('');
+ const [wish,setwishh] = useState([]);
+ const showButton = () => {
+    if(window.innerWidth<960){
+      setButton(false);
+    }
+    else{
+      setButton(true);
+    }
+  }
 
-export const Profile = () => {
-    const renderTooltip = (props) => (
-        <Tooltip id="button-tooltip" {...props}>
-          <PicChange>😍 Click to Change Profile Picture 😍</PicChange>
-        </Tooltip>  
-      );
+  const [follow,setfollow] = useState(true);
 
-      const [button,setButton] = useState(true);
+ useEffect(() => {
+    const address = 'http://localhost:3001/api/user/'+id;
+    Axios.get(address)
+    .then(result=>{
+        console.log(result);
+        setName(result.data.user.Name);
+        setBio(result.data.user.Moto);
+        setAge(result.data.user.Age);
+        // console.log(this.state.Name);
+        // this.context.ok = true;
+    })
+    .catch(error=>{
+        console.log(error);
+    })
 
-      const showButton = () => {
-        if(window.innerWidth<960){
-          setButton(false);
-        }
-        else{
-          setButton(true);
-        }
-      }
-      
-      useEffect(() => {
-        showButton();
-      }, [])
-  
-      window.addEventListener('resize',showButton);
+    const data = {
+      _id : id
+    }
+    Axios.post('http://localhost:3001/api/myallpost',data)
+        .then(result=>{
+          console.log(result);
+          setwishh(result.data);
+        })
 
-      const USER = JSON.parse(localStorage.getItem('UserData'));
+    const dataa = {
+      To : id,
+      From : JSON.parse(localStorage.getItem('UserData'))._id
+    }
+    Axios.post('http://localhost:3001/api/checkfollow',dataa)
+    .then(result=>{
+      console.log(result);
+      if(result.data>0)setfollow(false);
+      else setfollow(true);
+      console.log(result.data);
+    }).catch(error=>{
+      console.log(error);
+    })
+    
+    Axios.post('http://localhost:3001/api/userfollower',{id : id})
+    .then(result=>{
+      console.log(result);
+      setfollowers(result.data);
+      console.log(result.data);
+    }).catch(error=>{
+      console.log(error);
+    })
 
-    return (
-        <>  
-            <ProfileNavbar />
+    Axios.post('http://localhost:3001/api/userfollowing',{id : id})
+    .then(result=>{
+      console.log(result);
+      setfollowings(result.data);
+      console.log(result.data);
+    }).catch(error=>{
+      console.log(error);
+    })
+
+    
+
+    showButton();
+ }, [])
+
+ 
+  window.addEventListener('resize',showButton);
+
+ function Follow(){
+    const data = {
+      To : id,
+      From : JSON.parse(localStorage.getItem('UserData'))._id
+    }
+    Axios.post('http://localhost:3001/api/follow',data)
+    .then(result=>{
+      console.log(result);
+      setfollow(false);
+    })
+ }
+ function unFollow(){
+    const data = {
+      To : id,
+      From : JSON.parse(localStorage.getItem('UserData'))._id
+    }
+    Axios.post('http://localhost:3001/api/unfollow',data)
+    .then(result=>{
+      console.log(result);
+      setfollow(true);
+    })
+ }
+
+ return <>
+      <ProfileNavbar />
             <Something>
             <ChatLeft>
               {button && <> 
@@ -208,29 +293,32 @@ export const Profile = () => {
                      
                      <h1 className="H23" style={{cursor: "pointer"}}><u>User Profile</u></h1>
                      <SemiFull>
-                    <OverlayTrigger
-                    placement="bottom"
-                    delay={{ show: 0, hide: 400 }}
-                    overlay={renderTooltip}
-                >
+                   
                 
                 <ProfileImg src="https://th.bing.com/th/id/OIP.DAQotCc6NyxQdo_BIXIGlwHaIa?pid=Api&rs=1"/>
-                </OverlayTrigger>
-                        <NameDisplay1><b>👋 Welcome 👋</b></NameDisplay1><br/>
-                        <NameDisplay>{USER.Name}</NameDisplay><br/>
-                        <Moto>Bio : {USER.Moto}</Moto>
-                        <Moto>Age : {USER.Age}</Moto>
+
+                        { id !== JSON.parse(localStorage.getItem('UserData'))._id && 
+                        <> <br/>
+                          {follow && <> <Button onClick={Follow} style={{background:"red"}}><b>+ FOLLOW +</b></Button> </> }
+                          {!follow && <> <Button onClick={unFollow} style={{background:"red"}}><b>- UNFOLLOW -</b></Button> </> }
+                          </>
+                        }
+                          
+                        <br/>
+                        <NameDisplay>{Name}</NameDisplay><br/>
+                        <Moto>Bio : {Bio}</Moto>
+                        <Moto>Age : {Age}</Moto>
                         <FollowBox>
-                            <Followers>10 <br/> Followers</Followers>
-                            <Wishes>10 <br/> Wishes</Wishes>
-                            <Following>10 <br/> Following</Following>
+                            <Followers>{followers} <br/> Follower</Followers>
+                            <Wishes>{wish.length} <br/> Wishes</Wishes>
+                            <Following>{followings} <br/> Following</Following>
                            
 
                           
                         </FollowBox>
                     </SemiFull>
                     <hr/>
-                    {
+                    {/* {
                       <>
                       
 
@@ -240,10 +328,24 @@ export const Profile = () => {
                     
                     }
                     
-                    <hr/>
+                    <hr/> */}
                    
                     
-                <ImageGalery />
+                    <h1 style={{cursor: "pointer",textAlign: "center",backgroundColor: "#4B59F7",color: "white",padding: "10px"}}><u>User's Wishlist</u></h1>
+               {/* <Galery> */}
+                   {
+                     wish.map(item=>{
+                       return(
+                        
+                          <div style={{border: "1px #cccccc solid", padding: "4px",width: "100%",textAlign: "center",background: "black" }}>
+                            <img src={item.Pic} style={{width: "80%",height:"500px",maxWidth: "700px"}}/>
+                            <br/>
+                            <div style={{padding: "2px", textAlign: "center",color: "white",margin: "10px"}}>Hii</div>
+                          </div>  
+                        
+                       )
+                     })
+                   }
                    
                 </Full>
             </FullPage>
@@ -253,7 +355,5 @@ export const Profile = () => {
             </Something>
 
             <h1 className="H23" style={{cursor: "pointer",color: "white"}}>.</h1>
-        </>
-    )
+ </>
 }
-

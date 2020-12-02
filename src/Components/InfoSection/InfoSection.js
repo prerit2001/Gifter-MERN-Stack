@@ -1,9 +1,10 @@
 
-import React,{useState , useEffect} from 'react';
+import React,{useState } from 'react';
 import { Container, Button } from '../../Styled-Global';
 import Modal from 'react-modal';
 import {FaWindowClose} from 'react-icons/fa';
 import axios from 'axios';
+
 
 
 import {
@@ -29,6 +30,16 @@ import {
   Button2,
   Button3
 } from './InfoSection.element';
+
+
+import {toast} from 'react-toastify';  
+  
+// Import toastify css file 
+import 'react-toastify/dist/ReactToastify.css';  
+  
+ // toast-configuration method,  
+ // it is compulsory method. 
+toast.configure() ;
 
 const customStyles = {
   content : {
@@ -144,6 +155,8 @@ function Register(e){
     axios.post('https://node-backend-gifter.herokuapp.com/api/signup',signpupdata)
     .then(function(responce){
       console.log(responce);
+      toast.success('User Registered Sucessful',{position: toast.POSITION.TOP_CENTER});
+      localStorage.setItem("UserData",JSON.stringify(responce.data.message));
       setProfile(true);
       setblank(1);
       setname(Name);
@@ -151,6 +164,7 @@ function Register(e){
     })
     .catch(function(error){
       console.log(error);
+      toast.error(error,{position: toast.POSITION.TOP_CENTER});
       setloading(false);
     });
 } 
@@ -173,7 +187,10 @@ function Register(e){
 
     axios.post('https://node-backend-gifter.herokuapp.com/api/signin',loginformdata)
     .then(function(responce){
+      localStorage.setItem("UserData",JSON.stringify(responce.data.user));
       console.log(responce);
+      var msg = 'Success, Welcome '+responce.data.user.Name;
+      toast.success( msg,{position: toast.POSITION.TOP_CENTER});
       setProfile(true);
       setblank(1);
       setname(responce.data.user.Name);
@@ -181,7 +198,7 @@ function Register(e){
     })
     .catch(function(error){
       console.log(error);
-      alert('🙊 Login Failed : Invalid Credential 🙊');
+      toast.error('🙊 Login Failed : Invalid Credential 🙊',{position: toast.POSITION.TOP_CENTER});
       setloading(false);
     });
 
@@ -293,7 +310,7 @@ function Register(e){
            <Heading1>😎</Heading1>
            <Heading1>Welcome</Heading1>
            <Heading1>{name}</Heading1>
-           <Button2><Prof to="/sign-up">Go To Your Profile Section</Prof></Button2>
+           <Button2><Prof to="/profile">Go To Your Profile Section</Prof></Button2>
            </>
          }
         
