@@ -5,9 +5,12 @@ import { IconContext } from 'react-icons/lib'
 import { Button } from '../../Styled-Global'
 import { Dropdown } from 'react-bootstrap';
 import Axios from 'axios';
-import {Link} from 'react-router-dom';
+
+
+
 
 const ProfileNavbar = () => {
+
 
     const [click,setClick] = useState(false);
     const [button,setButton] = useState(true);
@@ -15,7 +18,7 @@ const ProfileNavbar = () => {
     const handleclick = () => setClick(!click);
 
     const showButton = () => {
-      if(window.innerWidth<960){
+      if(window.innerWidth<1000){
         setButton(false);
       }
       else{
@@ -41,13 +44,18 @@ const ProfileNavbar = () => {
         Mail : mailhint
       }
 
-      Axios.post('http://localhost:3001/api/findmail',data)
+      Axios.post('https://node-backend-gifter.herokuapp.com/api/findmail',data)
       .then(result=>{
         console.log(result);
         setmail(result.data);
       })
 
     }
+
+    console.log(window.location.href);
+    var ss = (window.location.href);
+    ss = ss.substr(ss.length-7);
+
 
     return (
         <>
@@ -67,12 +75,12 @@ const ProfileNavbar = () => {
                     {click ? <FaTimes /> : <FaBars/>}
                   </SideIcon>
 
-                  <NavMenu onClick={handleclick} click={click}>
+                  <NavMenu click={click}>
 
                       
-                  <Dropdown>
+                  <Dropdown  style={{color: "red"}}>
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
-                       <NavItems >
+                       <NavItems style={{color: "red !important"}}>
                         <NavLinks>
                       <input type="email" style={{margin: "10px",padding: "20px",width: "100%",border: "2px solid #4B59F7",borderRadius: "20px"
                        }} placeholder="🔍 Search User By Email" onChange={findmail}/>
@@ -84,12 +92,20 @@ const ProfileNavbar = () => {
                       {
                       
                         mail.map(item => {
+                          if(ss==='profile')
                           return ( <>
                          
-                          <Dropdown.Item style={{color: "white",background: "black"}} href={"http://localhost:3000/profile/"+item._id}>{item.Email}</Dropdown.Item>
+                          <Dropdown.Item style={{margin: "10px",color: "white",background: "#4B59F7",borderRadius: "20%"}} href={"profile/"+item._id}>{item.Email}</Dropdown.Item>
                           <br />
                           </>
                           )
+                          else
+                          return ( <>
+                         
+                         <Dropdown.Item style={{margin: "10px",color: "white",background: "#4B59F7",borderRadius: "20%"}} href={item._id}>{item.Email}</Dropdown.Item>
+                         <br />
+                         </>
+                         )
                           
                         })
                       }
@@ -100,23 +116,23 @@ const ProfileNavbar = () => {
                   </Dropdown>
                      
 
-                      <NavItems style={{marginLeft: "10px"}}>
-                        <NavLinks to='/profile'> <b>Profile</b> </NavLinks>
+                      <NavItems style={{marginLeft: "10px"}} onClick={handleclick}>
+                        <NavLinks to='/profile'> <b>My Profile</b> </NavLinks>
                       </NavItems>
             
-                      <NavItems>
-                        <NavLinks to='/createWish'> <b>Wishlist</b> </NavLinks>
+                      <NavItems onClick={handleclick}>
+                        <NavLinks to='/createWish'> <b>My Wishlist</b> </NavLinks>
                       </NavItems>
 
-                      <NavItems>
-                        <NavLinks to='/followers'> <b>Followers</b> </NavLinks>
+                      <NavItems onClick={handleclick}>
+                        <NavLinks to='/followers'> <b>My Followers</b> </NavLinks>
                       </NavItems>
 
-                      <NavItems>
-                        <NavLinks to='/following'> <b>Following</b> </NavLinks>
+                      <NavItems onClick={handleclick}>
+                        <NavLinks to='/following'> <b>My Following</b> </NavLinks>
                       </NavItems>
 
-                      <NavBtnItem>
+                      <NavBtnItem onClick={handleclick}>
                         {
                           button ? 
                             (<NavBtnLink to="/sign-up">
@@ -138,4 +154,4 @@ const ProfileNavbar = () => {
     )
 }
 
-export default ProfileNavbar
+export default ProfileNavbar;

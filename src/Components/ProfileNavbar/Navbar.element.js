@@ -32,7 +32,7 @@ export const NavbarContainer = styled.div`
     padding-right: 10px;
     padding-left: 70px;
 
-    @media screen and (max-width: 990px){
+    @media screen and (max-width: 1400px){
         padding-right: 25px;
         padding-left: 25px;
     }
@@ -55,7 +55,7 @@ export const NavIcon = styled(FaGift)`
 export const SideIcon = styled.div`
     display: none;
 
-    @media screen and (max-width: 960px){
+    @media screen and (max-width: 1400px){
         display: block;
         position: absolute;
         top: 0;
@@ -72,7 +72,7 @@ export const NavMenu = styled.ul`
     list-style: none;
     text-align: center;
 
-    @media screen and (max-width: 960px){
+    @media screen and (max-width: 1400px){
         display: flex;
         flex-direction: column;
         width: ${({click}) => (click ? '80%' : '-15%')};
@@ -94,7 +94,7 @@ export const NavItems = styled.li`
         border-bottom: 2px solid #4b59f7;
     }
 
-    @media screen and (max-width: 960px){
+    @media screen and (max-width: 1400px){
         width: 100%;
 
         &:hover{
@@ -111,7 +111,7 @@ export const NavLinks = styled(Link)`
     padding: 0.5rem 1rem;
     height: 100%;
 
-    @media screen and (max-width: 960px){
+    @media screen and (max-width: 1400px){
         text-align: center;
         padding: .5rem;
         width: 100%;
@@ -125,7 +125,7 @@ export const NavLinks = styled(Link)`
 `
 
 export const NavBtnItem = styled.li`
-     @media screen and (max-width: 960px){
+     @media screen and (max-width: 1400px){
          display: flex;
          justify-content: center;
          align-items: center;

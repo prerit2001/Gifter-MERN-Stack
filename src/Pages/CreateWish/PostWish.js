@@ -38,7 +38,7 @@ export const PostWish = () => {
            setbutt(true); return;
         }
         if(heading.length===0 || heading.length>20){
-            toast.error('Heading Coloumn Error : Should be non-empty less than 20 characters',{position: toast.POSITION.TOP_CENTER});
+            toast.error('Price Coloumn Error : Should be non-empty less than 20 characters',{position: toast.POSITION.TOP_CENTER});
             setbutt(true); return;
         }
         if(priority<=0){
@@ -60,9 +60,9 @@ export const PostWish = () => {
         }
 
         var fileSize = image['size'];
-        if(fileSize>500000){
+        if(fileSize>1000000){
             //  alert('Photo Size Exceeds , Size must be less than 500Kb');
-            toast.error('Photo Size Exceeds , Size must be less than 500Kb',{position: toast.POSITION.TOP_CENTER});
+            toast.error('Photo Size Exceeds , Size must be less than 1MB',{position: toast.POSITION.TOP_CENTER});
             setbutt(true); return;
         }
 
@@ -109,7 +109,7 @@ export const PostWish = () => {
             }
             
             console.log(url)
-            axios.post('http://localhost:3001/api/postdata',postwishdata)
+            axios.post('https://node-backend-gifter.herokuapp.com/api/postdata',postwishdata)
             .then(function(responce){
                 console.log(responce);
                 toast.success('Added Sucessful',{position: toast.POSITION.TOP_CENTER});
@@ -149,7 +149,7 @@ export const PostWish = () => {
                 </div>
                 <div class="row">
                     <div class="col-25">
-                    <label for="lname">Heading</label>
+                    <label for="lname">Near-By Cost</label>
                     </div>
                     <div class="col-75">
                     <input className="ttext" type="text" id="lname" name="lastname"  pattern="^[A-Za-z0-9_.]+$" placeholder="Less than 20 character" onChange={e=>{setheading(e.target.value)}}/>

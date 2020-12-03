@@ -7,6 +7,7 @@ import axios from 'axios';
 
 
 
+
 import {
   InfoSec,
   ForgetPass,
@@ -26,7 +27,7 @@ import {
   FullName,
   Age,
   Input1,
-  Prof,
+
   Button2,
   Button3
 } from './InfoSection.element';
@@ -71,6 +72,7 @@ function InfoSection({
   Loading
 }) {
 
+  // const USER = JSON.parse(localStorage.getItem('UserData'));
   var subtitle;
   const [modalIsOpen,setIsOpen] = React.useState(false);
   const [isPreviewShown, setPreviewShown] = useState(0);
@@ -111,7 +113,7 @@ function InfoSection({
 
     setForgetPassword(ForgetPassword===0 ? 1: 0); // Here we change state
     setblank(blank===0 ? 1: 0);
-}
+ }
 
 function OTP(e){
   e.preventDefault();
@@ -156,7 +158,7 @@ function Register(e){
     .then(function(responce){
       console.log(responce);
       toast.success('User Registered Sucessful',{position: toast.POSITION.TOP_CENTER});
-      localStorage.setItem("UserData",JSON.stringify(responce.data.message));
+      localStorage.setItem("UserData",JSON.stringify(responce.data.user));
       setProfile(true);
       setblank(1);
       setname(Name);
@@ -164,10 +166,12 @@ function Register(e){
     })
     .catch(function(error){
       console.log(error);
-      toast.error(error,{position: toast.POSITION.TOP_CENTER});
+      toast.error("Server Refused To Connect, Make Sure Email Not Registered Yet",{position: toast.POSITION.TOP_CENTER});
       setloading(false);
     });
 } 
+
+  
 
   const [IEmail,IsetEmail] = useState('');
   const [IPassword,IsetPassword] = useState('');
@@ -243,7 +247,7 @@ function Register(e){
          <h2 ref={_subtitle => (subtitle = _subtitle)} > </h2>
          <Cross><FaWindowClose onClick={closeModal} /></Cross>
         
-         { blank===0 && isPreviewShown===0 && 
+         {  !localStorage.getItem('UserData') && blank===0 && isPreviewShown===0 && 
          <>
            <Heading1>Sign In</Heading1>
            <form  onSubmit={Login}>
@@ -258,12 +262,12 @@ function Register(e){
           </>
          }
 
-         { blank===0 && isPreviewShown===1 && 
+         {  !localStorage.getItem('UserData') && blank===0 && isPreviewShown===1 && 
           <>
             <Heading1>Sign Up</Heading1>
             <form onSubmit={Register}>
             <FullName type="text" placeholder="👨 Full Name" onChange={event => UsetName(event.target.value)} required></FullName>
-            <FullName type="text" placeholder="🤔 Moto" onChange={event => UsetMoto(event.target.value)} required></FullName>
+            <FullName type="text" placeholder="🤔 Bio" onChange={event => UsetMoto(event.target.value)} required></FullName>
             <br/>
             <Age type="tel" id="phone" placeholder="📲 Phone Number (10 Digit) " name="phone" pattern="[0-9]{10}"  onChange={event => UsetPhone(event.target.value)} required></Age>
             <Age type="text" placeholder="👨 Age" pattern="[0-9]{2}" onChange={event => UsetAge(event.target.value)} required></Age><br/>
@@ -277,7 +281,7 @@ function Register(e){
          }
 
          {
-          otp===0 && blank===1 && ForgetPassword===1  &&
+          !localStorage.getItem('UserData') && otp===0 && blank===1 && ForgetPassword===1  &&
            <>
            <Heading1>Forgot</Heading1>
            <Heading1>Password?</Heading1>
@@ -291,7 +295,7 @@ function Register(e){
          }
 
          {
-           otp===1 && 
+          !localStorage.getItem('UserData') && otp===1 && 
            
            <>
            <Heading1>OTP Sent !</Heading1>
@@ -310,7 +314,17 @@ function Register(e){
            <Heading1>😎</Heading1>
            <Heading1>Welcome</Heading1>
            <Heading1>{name}</Heading1>
-           <Button2><Prof to="/profile">Go To Your Profile Section</Prof></Button2>
+           <Button2 style={{color: "white"}}><a href="/profile">Go To Your Profile Section</a></Button2>
+           </>
+         }
+
+         {
+          localStorage.getItem('UserData') && !profile &&
+          <>
+           <Heading1>😎</Heading1>
+           <Heading1>Welcome</Heading1>
+           <Heading1>{JSON.parse(localStorage.getItem('UserData')).Name}</Heading1>
+           <Button2 style={{color: "white"}}><a href="/profile">Go To Your Profile Section</a></Button2>
            </>
          }
         
