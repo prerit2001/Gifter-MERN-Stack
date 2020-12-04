@@ -5,14 +5,12 @@ import {FaWindowClose} from 'react-icons/fa';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-// import 'bootstrap/dist/css/bootstrap.css';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-import { Card, Icon } from 'semantic-ui-react'
+
 import{
 
     Item
 } from './ImageGalery.element';
-import { Heading } from "../../Components/InfoSection/InfoSection.element";
+
 
 const customStyles = {
   content : {
@@ -53,12 +51,7 @@ function ImageGallaryComponent(){
         })
       },[])
 
-      const extra = (
-        <a>
-          <Icon name='user' />
-          16 Friends
-        </a>
-      )
+     
 
       const [modalIsOpen,setIsOpen] = React.useState(false);
       var subtitle;

@@ -26,6 +26,10 @@ function App() {
      <Switch>
 
        <Route path="/" exact component={Homepage}/>
+       <Route path="/about" exact component={Below_Homepage}/>
+       <Route path="/services" exact component={Services}/>
+       <Route path="/products" exact component={Homepage}/>
+       <Route path="/sign-up" exact component={Signup}/>
        <Route component={NotFound} />
 
      </Switch>
