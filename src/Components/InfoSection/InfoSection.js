@@ -314,7 +314,7 @@ function Register(e){
            <Heading1>😎</Heading1>
            <Heading1>Welcome</Heading1>
            <Heading1>{name}</Heading1>
-           <Button2 style={{color: "white"}}><a href="/profile">Go To Your Profile Section</a></Button2>
+           <Button2 style={{color: "white"}}><a href="/profile" style={{color: "white"}}>Go To Your Profile Section</a></Button2>
            </>
          }
 
@@ -324,7 +324,7 @@ function Register(e){
            <Heading1>😎</Heading1>
            <Heading1>Welcome</Heading1>
            <Heading1>{JSON.parse(localStorage.getItem('UserData')).Name}</Heading1>
-           <Button2 style={{color: "white"}}><a href="/profile">Go To Your Profile Section</a></Button2>
+           <Button2 style={{color: "white"}}><a href="/profile" style={{color: "white"}}>Go To Your Profile Section</a></Button2>
            </>
          }
         

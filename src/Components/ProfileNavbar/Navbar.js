@@ -1,12 +1,27 @@
 import React, {useState, useEffect} from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import { Nav, NavbarContainer, NavLogo, NavIcon, SideIcon, NavMenu, NavItems, NavLinks, NavBtnItem, NavBtnLink } from './Navbar.element';
+import { Nav, NavbarContainer, NavLogo, NavIcon, SideIcon, NavMenu, NavItems, NavLinks, NavBtnItem, NavBtnLink,Followerbox } from './Navbar.element';
 import { IconContext } from 'react-icons/lib'
 import { Button } from '../../Styled-Global'
 import { Dropdown } from 'react-bootstrap';
 import Axios from 'axios';
+import Modal from 'react-modal';
+import {FaWindowClose} from 'react-icons/fa';
+import {RiUserFollowFill} from 'react-icons/ri'
 
-
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)',
+    height: '400px',
+    width: '50%',
+    position: 'fixed'
+  }
+};
 
 
 const ProfileNavbar = () => {
@@ -14,6 +29,24 @@ const ProfileNavbar = () => {
 
     const [click,setClick] = useState(false);
     const [button,setButton] = useState(true);
+    const [modalIsOpen,setIsOpen] = React.useState(false);
+
+
+    function openModal() {
+      setIsOpen(true);
+      
+    }
+   
+    function afterOpenModal() {
+      // references are now sync'd and can be accessed.
+      subtitle.style.color = '#f00';
+    }
+   
+    function closeModal(){
+      setIsOpen(false);
+    }
+
+    var subtitle;
 
     const handleclick = () => setClick(!click);
 
@@ -25,8 +58,22 @@ const ProfileNavbar = () => {
         setButton(true);
       }
     }
+
+    const [detailfollower,setdetailFollowers] = useState([]);
+    const [detailfollowing,setdetailFollowings] = useState([]);
+    const [Following,setFollowing] = useState(true);
     
     useEffect(() => {
+      Axios.post('https://node-backend-gifter.herokuapp.com/api/detailUserFollower',{_id : JSON.parse(localStorage.getItem('UserData'))._id})
+            .then(result=>{
+              console.log(result);
+              setdetailFollowers(result.data);
+      })
+      Axios.post('https://node-backend-gifter.herokuapp.com/api/detailUserFollowing',{_id : JSON.parse(localStorage.getItem('UserData'))._id})
+            .then(result=>{
+              console.log(result);
+              setdetailFollowings(result.data);
+      })
       showButton();
     }, [])
 
@@ -56,6 +103,16 @@ const ProfileNavbar = () => {
     var ss = (window.location.href);
     ss = ss.substr(ss.length-7);
 
+
+    function follower(){
+       setFollowing(false);
+       setIsOpen(true);
+    }
+    
+    function following(){
+      setFollowing(true);
+      setIsOpen(true);
+   }
 
     return (
         <>
@@ -125,11 +182,11 @@ const ProfileNavbar = () => {
                       </NavItems>
 
                       <NavItems onClick={handleclick}>
-                        <NavLinks to='/followers'> <b>My Followers</b> </NavLinks>
+                        <NavLinks onClick={follower}> <b>My Followers</b> </NavLinks>
                       </NavItems>
 
                       <NavItems onClick={handleclick}>
-                        <NavLinks to='/following'> <b>My Following</b> </NavLinks>
+                        <NavLinks onClick={following}> <b>My Following</b> </NavLinks>
                       </NavItems>
 
                       <NavBtnItem onClick={handleclick}>
@@ -150,6 +207,72 @@ const ProfileNavbar = () => {
 
             </Nav>
           </IconContext.Provider>
+
+                        
+      <Modal
+          isOpen={modalIsOpen}
+          onAfterOpen={afterOpenModal}
+          onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+       
+         <h2 ref={_subtitle => (subtitle = _subtitle)} > </h2>
+         <div style={{right:0,top:0,margin: "20px",position:"fixed"}}><FaWindowClose onClick={closeModal} /></div>
+         <br/>
+        { !Following && <> <h2 style={{border: "2px solid black",textAlign: 'center'}}> <b><RiUserFollowFill/> My Followers <RiUserFollowFill/></b></h2>
+          
+
+          <Followerbox>
+          <hr/>
+          {
+                    
+                    detailfollower.map(item => {
+                      return (
+                        <a href={"/profile/"+item._id}>
+                        <div className="container" >
+                          <img src={item.pofilePicture} alt="Avatar" style={{width: "100%",height: "60px",maxWidth: "50px"}}  />
+                          <p style={{marginTop: "10px"}}>{item.Name}</p>
+                        </div>
+                        <hr/>
+                        </a>
+                      )
+                    })
+          }
+          </Followerbox></>
+
+        }
+        { Following && <> <h2 style={{border: "2px solid black",textAlign: 'center'}}> <b><RiUserFollowFill/> My Followers <RiUserFollowFill/></b></h2>
+          
+
+          <Followerbox>
+          <hr/>
+          {
+                    
+                    detailfollowing.map(item => {
+                      return (
+                        <a href={"/profile/"+item._id}>
+                        <div className="container" >
+                          <img src={item.pofilePicture} alt="Avatar" style={{width: "100%",height: "60px",maxWidth: "50px"}}  />
+                          <p style={{marginTop: "10px"}}>{item.Name}</p>
+                        </div>
+                        <hr/>
+                        </a>
+                      )
+                    })
+          }
+          </Followerbox></>
+
+        }
+        
+         
+        
+         
+
+
+         
+
+        </Modal>
         </>
     )
 }
