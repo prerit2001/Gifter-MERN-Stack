@@ -1,8 +1,8 @@
-import React from 'react';
-import { Button } from './../../Styled-Global';
-import { IoMdPricetags} from 'react-icons/io'
-import { ImGift,ImConnection } from 'react-icons/im'
-import { IconContext } from 'react-icons/lib';
+import React from "react";
+import { Button } from "./../../Styled-Global";
+import { IoMdPricetags } from "react-icons/io";
+import { ImGift, ImConnection } from "react-icons/im";
+import { IconContext } from "react-icons/lib";
 import {
   PricingSection,
   PricingWrapper,
@@ -15,17 +15,17 @@ import {
   PricingCardCost,
   PricingCardLength,
   PricingCardFeatures,
-  PricingCardFeature
-} from './Pricing.element';
+  PricingCardFeature,
+} from "./Pricing.element";
 
 function Pricing() {
   return (
-    <IconContext.Provider value={{ color: '#a9b3c1', size: 64 }}>
+    <IconContext.Provider value={{ color: "#a9b3c1", size: 64 }}>
       <PricingSection>
         <PricingWrapper>
           <PricingHeading>Our Services</PricingHeading>
           <PricingContainer>
-            <PricingCard to='/sign-up'>
+            <PricingCard to="/sign-up">
               <PricingCardInfo>
                 <PricingCardIcon>
                   <IoMdPricetags />
@@ -41,7 +41,7 @@ function Pricing() {
                 <Button primary>Get Started</Button>
               </PricingCardInfo>
             </PricingCard>
-            <PricingCard to='/sign-up'>
+            <PricingCard to="/sign-up">
               <PricingCardInfo>
                 <PricingCardIcon>
                   <ImGift />
@@ -57,7 +57,7 @@ function Pricing() {
                 <Button primary>Get Started</Button>
               </PricingCardInfo>
             </PricingCard>
-            <PricingCard to='/sign-up'>
+            <PricingCard to="/sign-up">
               <PricingCardInfo>
                 <PricingCardIcon>
                   <ImConnection />
@@ -68,7 +68,7 @@ function Pricing() {
                 <PricingCardFeatures>
                   <PricingCardFeature>Anyone can Connect</PricingCardFeature>
                   <PricingCardFeature></PricingCardFeature>
-                  <PricingCardFeature>  24/7 Support</PricingCardFeature>
+                  <PricingCardFeature> 24/7 Support</PricingCardFeature>
                 </PricingCardFeatures>
                 <Button primary>Request</Button>
               </PricingCardInfo>

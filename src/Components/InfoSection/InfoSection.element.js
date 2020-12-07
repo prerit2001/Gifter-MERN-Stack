@@ -1,19 +1,18 @@
-import styled from 'styled-components';
-import {Link} from 'react-router-dom';
-
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const InfoSec = styled.div`
   color: #fff;
   padding: 160px 0;
-  background: ${({ lightBg }) => (lightBg ? '#fff' : '#101522')};
+  background: ${({ lightBg }) => (lightBg ? "#fff" : "#101522")};
 `;
 
 export const InfoRow = styled.div`
   display: flex;
   margin: 0 -15px -15px -15px;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   align-items: center;
-  flex-direction: ${({ imgStart }) => (imgStart ? 'row-reverse' : 'row')};
+  flex-direction: ${({ imgStart }) => (imgStart ? "row-reverse" : "row")};
 `;
 
 export const InfoColumn = styled.div`
@@ -43,11 +42,11 @@ export const TextWrapper = styled.div`
 export const ImgWrapper = styled.div`
   max-width: 555px;
   display: flex;
-  justify-content: ${({ start }) => (start ? 'flex-start' : 'flex-end')};
+  justify-content: ${({ start }) => (start ? "flex-start" : "flex-end")};
 `;
 
 export const TopLine = styled.div`
-  color: ${({ lightTopLine }) => (lightTopLine ? '#a9b3c1' : '#4B59F7')};
+  color: ${({ lightTopLine }) => (lightTopLine ? "#a9b3c1" : "#4B59F7")};
   font-size: 18px;
   line-height: 16px;
   font-weight: 700;
@@ -69,7 +68,7 @@ export const Heading = styled.h1`
   font-size: 45px;
   line-height: 1.1;
   font-weight: 600;
-  color: ${({ lightText }) => (lightText ? '#f7f8fa' : '#1c2237')};
+  color: ${({ lightText }) => (lightText ? "#f7f8fa" : "#1c2237")};
 `;
 
 export const Subtitle = styled.p`
@@ -77,21 +76,21 @@ export const Subtitle = styled.p`
   margin-bottom: 35px;
   font-size: 18px;
   line-height: 24px;
-  color: ${({ lightTextDesc }) => (lightTextDesc ? '#a9b3c1' : '#1c2237')};
+  color: ${({ lightTextDesc }) => (lightTextDesc ? "#a9b3c1" : "#1c2237")};
 `;
 
 export const Cross = styled.div`
-  right:0;
-  top:0;
+  right: 0;
+  top: 0;
   margin: 30px;
-  position:fixed;
-`
+  position: fixed;
+`;
 
 export const Input = styled.input`
   padding: 15px;
   font-size: 20px;
-  width:90%; 
-  margin: 15px; 
+  width: 90%;
+  margin: 15px;
   box-sizing: border-box;
   letter-spacing: 1px;
   color: white;
@@ -99,7 +98,7 @@ export const Input = styled.input`
   border-bottom: 10px solid #ccc;
   background-color: #101522;
   transition: 1s;
-`
+`;
 export const Heading1 = styled.h1`
   margin-bottom: 24px;
   font-size: 45px;
@@ -117,7 +116,7 @@ export const ForgetPass = styled.div`
   margin-right: 7%;
   cursor: pointer;
   margin-bottom: 2%;
-`
+`;
 export const Button1 = styled.button`
   margin-bottom: 24px;
   font-size: 25px;
@@ -128,16 +127,16 @@ export const Button1 = styled.button`
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   cursor: pointer;
-  margin:auto;
-  display:block;
+  margin: auto;
+  display: block;
   background: black;
   color: white;
 
-  &:hover{
+  &:hover {
     background: green;
     color: yellow;
   }
-`
+`;
 
 export const Account = styled.div`
   color: black;
@@ -147,14 +146,13 @@ export const Account = styled.div`
   background: lightblue;
   margin-top: 10px;
   font-size: 1.2rem;
-  
-`  
+`;
 
 export const FullName = styled.input`
   padding: 15px;
   font-size: 18px;
-  width:45%; 
-  margin: 15px; 
+  width: 45%;
+  margin: 15px;
   box-sizing: border-box;
   letter-spacing: 1px;
   color: white;
@@ -170,15 +168,15 @@ export const FullName = styled.input`
     margin: 3px;
     padding: 10px;
   }
-`
+`;
 
 export const Age = styled.input`
   padding: 15px;
   font-size: 18px;
-  width:45%;
+  width: 45%;
   right: 0;
-  margin-right:7%; 
-  margin: 15px; 
+  margin-right: 7%;
+  margin: 15px;
   box-sizing: border-box;
   letter-spacing: 1px;
   color: white;
@@ -193,21 +191,20 @@ export const Age = styled.input`
     margin: 3px;
     justify-content: center;
   }
-`
-
+`;
 
 export const Input1 = styled.input`
   padding: 15px;
   font-size: 20px;
-  width:45%; 
-  margin: 15px; 
+  width: 45%;
+  margin: 15px;
   box-sizing: border-box;
   letter-spacing: 1px;
   color: white;
   border: 0;
   border-bottom: 10px solid #ccc;
   background-color: #101522;
-  
+
   transition: 1s;
   @media screen and (max-width: 850px) {
     width: 90%;
@@ -216,7 +213,7 @@ export const Input1 = styled.input`
     margin: 3px;
     justify-content: center;
   }
-`
+`;
 
 export const Prof = styled(Link)`
   color: white;
@@ -226,7 +223,7 @@ export const Prof = styled(Link)`
   cursor: pointer;
   margin-top: 10px;
   font-size: 1.5rem;
-`
+`;
 
 export const Button2 = styled.button`
   border-radius: 20px;
@@ -238,16 +235,16 @@ export const Button2 = styled.button`
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   cursor: pointer;
-  margin:auto;
-  display:block;
-  background: #0467FB;
+  margin: auto;
+  display: block;
+  background: #0467fb;
   color: black;
 
-  &:hover{
+  &:hover {
     background: green;
     color: yellow;
   }
-`
+`;
 
 export const Button3 = styled.button`
   margin-bottom: 24px;
@@ -259,8 +256,8 @@ export const Button3 = styled.button`
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   cursor: pointer;
-  margin:auto;
-  display:block;
+  margin: auto;
+  display: block;
   background: black;
   color: white;
-`
+`;
