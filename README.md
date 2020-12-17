@@ -1,5 +1,21 @@
 ## Hosted at URL -- ( https://gifter-af699.web.app/ ) @ Check It Out
 
+#### Some Pics
+  <b>                                                     HOME-PAGE</b>
+  <img src="ScreenShots/ezgif.com-gif-maker.gif"  width="900" height="500" />  
+  <pre><b>                      SIGNUP                                                 SIGNIN
+  <img src="ScreenShots/883.PNG"  width="400" height="300"  float="right"/>    <img src="ScreenShots/882.PNG"  width="400" height="300" /> 
+  </pre>
+  <b>                                                     PROFILE-PAGE</b>
+  <img src="ScreenShots/ezgif.com-gif-maker (1).gif"  width="900" height="500" />  
+  <pre><b>                      OTHER-PROFILE-PAGE                                      UPDATE-PROFILE-PAGE
+  <img src="ScreenShots/879.PNG"  width="400" height="300"  float="right"/>    <img src="ScreenShots/878.PNG"  width="400" height="300" /> 
+  </pre>
+  <pre><b>                      REAL-TIME-USER-SEARCH                                   MY-FOLLOWER/FOLLOWING
+  <img src="ScreenShots/881.PNG"  width="400" height="300"  float="right"/>    <img src="ScreenShots/880.PNG"  width="400" height="300" /> 
+  </pre>
+  
+ 
 
 # Getting Started with Create React App
 
