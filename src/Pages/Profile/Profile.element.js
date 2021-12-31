@@ -235,7 +235,7 @@ export const Heading1 = styled.h1`
   line-height: 1.1;
   font-weight: 600;
   color: #1c2237;
-  font-family: cursive;
+  /* font-family: cursive; */
   text-align: center;
 `;
 
@@ -260,7 +260,7 @@ export const Button1 = styled.button`
   font-weight: 600;
   color: #1c2237;
   padding: 10px;
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
   text-align: center;
   cursor: pointer;
   margin: auto;
@@ -291,7 +291,7 @@ export const Button3 = styled.button`
   font-weight: 600;
   color: #1c2237;
   padding: 10px;
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
   text-align: center;
   cursor: pointer;
   margin: auto;

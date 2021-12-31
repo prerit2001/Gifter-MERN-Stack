@@ -301,11 +301,11 @@ export const Profile = () => {
         <ChatLeft>
           {button && (
             <>
-              <h2 className="H22">
+              <p className="H22">
                 {" "}
                 <AiFillWechat /> <br /> Recent Annonymous Chat Messages <br />{" "}
                 💬{" "}
-              </h2>
+              </p>
 
               <form class="form">
                 <div class="animate__animated animate__fadeInLeft">
@@ -372,10 +372,10 @@ export const Profile = () => {
         <ChatRight>
           {button && (
             <>
-              <h2 className="H22">
+              <p className="H22">
                 {" "}
                 <RiUserFollowFill /> <br /> User's Follower <br /> 😊💬😊{" "}
-              </h2>
+              </p>
 
               <br />
 

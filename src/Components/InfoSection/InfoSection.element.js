@@ -63,11 +63,15 @@ export const Img = styled.img`
   max-height: 500px;
 `;
 
-export const Heading = styled.h1`
+export const Heading = styled.p`
   margin-bottom: 24px;
   font-size: 45px;
   line-height: 1.1;
-  font-weight: 600;
+  /* font-weight: 600; */
+  /* max-width: 440px; */
+  /* margin-bottom: 35px; */
+  /* font-size: 18px; */
+  /* line-height: 24px; */
   color: ${({ lightText }) => (lightText ? "#f7f8fa" : "#1c2237")};
 `;
 
@@ -99,13 +103,13 @@ export const Input = styled.input`
   background-color: #101522;
   transition: 1s;
 `;
-export const Heading1 = styled.h1`
+export const Heading1 = styled.p`
   margin-bottom: 24px;
   font-size: 45px;
   line-height: 1.1;
-  font-weight: 600;
+  /* font-weight: 600; */
   color: #1c2237;
-  font-family: cursive;
+  /* font-family: cursive; */
   text-align: center;
 `;
 
@@ -124,7 +128,7 @@ export const Button1 = styled.button`
   font-weight: 600;
   color: #1c2237;
   padding: 10px;
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
   text-align: center;
   cursor: pointer;
   margin: auto;
@@ -232,7 +236,7 @@ export const Button2 = styled.button`
   line-height: 1.1;
   font-weight: 600;
   padding: 10px;
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
   text-align: center;
   cursor: pointer;
   margin: auto;
@@ -253,7 +257,7 @@ export const Button3 = styled.button`
   font-weight: 600;
   color: #1c2237;
   padding: 10px;
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
   text-align: center;
   cursor: pointer;
   margin: auto;

@@ -58,7 +58,8 @@
 .H22 {
   margin: 20px;
   background-color: #4b59f7;
-  color: white;
+  /* color: white; */
+  font-size: 20px;
   padding: 10px;
 }
 

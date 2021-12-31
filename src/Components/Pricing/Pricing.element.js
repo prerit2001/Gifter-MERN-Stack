@@ -82,7 +82,7 @@ export const PricingCardPlan = styled.h3`
   font-size: 24px;
 `;
 
-export const PricingCardCost = styled.h4`
+export const PricingCardCost = styled.p`
   font-size: 40px;
 `;
 
